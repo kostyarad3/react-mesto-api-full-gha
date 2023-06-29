@@ -28,10 +28,16 @@ app.use(express.json());
 // для второго варианта
 // app.use(cookieParser);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(routes);
 app.use(auth);
-app.use('/users', userRoutes);
-app.use('/cards', cardRoutes);
+app.use('/users/api', userRoutes);
+app.use('/cards/api', cardRoutes);
 
 app.use((req, res, next) => next(new NotFoundError('Страница не найдена')));
 app.use(errors());
