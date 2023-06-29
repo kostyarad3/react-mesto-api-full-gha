@@ -36,8 +36,8 @@ app.get('/crash-test', () => {
 
 app.use(routes);
 app.use(auth);
-app.use('/users/api', userRoutes);
-app.use('/cards/api', cardRoutes);
+app.use('/users/', userRoutes);
+app.use('/cards/', cardRoutes);
 
 app.use((req, res, next) => next(new NotFoundError('Страница не найдена')));
 app.use(errors());
