@@ -1,0 +1,23 @@
+.login-form__input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 9px 0;
+  color: #CCCCCC;
+  border-bottom: 2px solid #CCCCCC;
+  display: block;
+  box-sizing: border-box;
+}
+
+.login-form__input::placeholder {
+  color: #CCCCCC;
+}
+
+.login-form__input:nth-of-type(2) {
+  margin-top: 21px;
+}

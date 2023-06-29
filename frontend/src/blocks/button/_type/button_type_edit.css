@@ -1,0 +1,22 @@
+.button_type_edit {
+  position: absolute;
+  top: 7px;
+  right: -27px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../../../images/edit.svg) center no-repeat;
+}
+
+@media screen and (min-width: 725px) {
+  .button_type_edit {
+    width: 24px;
+    height: 24px;
+    top: 18px;
+    right: -24px;
+    background-size: 10px 10px;
+  }
+}

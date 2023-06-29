@@ -1,0 +1,6 @@
+.header__close-info {
+  width: 20px;
+  height: 20px;
+  align-self: flex-end;
+  cursor: pointer;
+}

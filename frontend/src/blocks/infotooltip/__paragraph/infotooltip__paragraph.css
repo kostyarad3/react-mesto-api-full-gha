@@ -1,0 +1,18 @@
+.infotooltip__paragraph {
+  font-family: 'Inter';
+  font-style: normal;
+  margin: 0;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  
+}
+
+@media screen and (min-width: 650px ) {
+  .infotooltip__paragraph {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}

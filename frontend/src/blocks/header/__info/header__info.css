@@ -1,0 +1,16 @@
+.header__info {
+  display: none;
+  padding-bottom: 40px;
+  padding-top: 37px;
+  flex-direction: column;
+  gap: 13px;
+  align-items: center;
+}
+
+@media screen and (min-width: 630px ) {
+  .header__info {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+}

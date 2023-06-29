@@ -1,0 +1,14 @@
+.profile__content {
+  color: #fff;
+  margin: 26px 0 33px;
+  max-width: 189px;
+  position: relative;
+}
+
+@media screen and (min-width: 725px) {
+  .profile__content {
+    max-width: 312px;
+    width: 100%;
+    margin: 0;
+  }
+}

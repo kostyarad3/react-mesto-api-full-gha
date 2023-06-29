@@ -1,0 +1,19 @@
+.container {
+  max-width: 282px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+
+@media screen and (min-width: 650px ) {
+  .container {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 900px ) {
+  .container {
+    max-width: 880px;
+  }
+}
+
+

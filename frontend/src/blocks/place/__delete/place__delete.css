@@ -1,0 +1,8 @@
+.place__delete {
+  width: 18px;
+  height: 19px;
+  background: url(../../../images/delete.svg) center no-repeat;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

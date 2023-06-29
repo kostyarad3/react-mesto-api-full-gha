@@ -1,0 +1,16 @@
+.login-form__text {
+  margin-top: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+@media screen and (min-width: 630px ) {
+  .login-form__text {
+    margin-top: 15px;
+  }
+}

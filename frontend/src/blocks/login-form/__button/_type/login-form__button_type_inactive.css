@@ -1,0 +1,4 @@
+.login-form__button_type_inactive {
+  background-color: grey;
+  color: rgba(0, 0, 0, 0.2);
+}
