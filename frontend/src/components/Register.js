@@ -46,7 +46,7 @@ function Register({ handleRegistration }) {
       </span>
       <button
         disabled={!isValid}
-        className={`login-form__button ${
+        className={`button login-form__button ${
           !isValid && "login-form__button_type_inactive"
         }`}
       >

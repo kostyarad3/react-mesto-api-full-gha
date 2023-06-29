@@ -45,7 +45,7 @@ function Login({ handleLogin }) {
       </span>
       <button 
         disabled={!isValid} 
-        className={`login-form__button ${!isValid && 'login-form__button_type_inactive'}`}
+        className={`button login-form__button ${!isValid && 'login-form__button_type_inactive'}`}
       >
         Войти
       </button>
