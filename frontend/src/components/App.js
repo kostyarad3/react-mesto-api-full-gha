@@ -58,6 +58,7 @@ function App() {
 
   React.useEffect(() => {
     checkToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // close popup by ESC press and overlay click
   React.useEffect(() => {
