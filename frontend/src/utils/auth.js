@@ -1,7 +1,6 @@
 export const BASE_URL = "https://api.mesto.kostyarad.nomoreparties.sbs";
 //export const BASE_URL = "http://localhost:3000";
 
-
 function getResponseData(res) {
   if (res.ok) {
     return res.json();
@@ -39,8 +38,8 @@ export const login = (email, password) => {
 export function getContent(jwt) {
   return fetch(`${BASE_URL}/users/me`, {
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${jwt}`,
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${jwt}`
     },
   })
     .then((res) => getResponseData(res))

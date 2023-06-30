@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 // для второго варианта
 // const cookieParser = require('cookie-parser');
 const routes = require('./routes/index');
@@ -36,12 +37,17 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
+app.use(requestLogger);
+
 app.use(routes);
 app.use(auth);
 app.use('/users/', userRoutes);
 app.use('/cards/', cardRoutes);
 
 app.use((req, res, next) => next(new NotFoundError('Страница не найдена')));
+
+app.use(errorLogger);
+
 app.use(errors());
 app.use(setError);
 
