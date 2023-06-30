@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -24,6 +25,7 @@ mongoose
   });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 // для второго варианта
 // app.use(cookieParser);
