@@ -89,10 +89,11 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.mesto.kostyarad.nomoreparties.sbs",
+  credentials: "include",
   //baseUrl: "http://localhost:3000",
   headers: {
-    //authorization: "57eaed88-c38c-4ce7-a324-426034faa455",
     "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
   },
 });
 

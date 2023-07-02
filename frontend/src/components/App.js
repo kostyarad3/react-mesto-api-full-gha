@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "../index.css";
@@ -58,7 +59,6 @@ function App() {
 
   React.useEffect(() => {
     checkToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // close popup by ESC press and overlay click
   React.useEffect(() => {

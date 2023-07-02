@@ -14,11 +14,11 @@ function login(req, res, next) {
         expiresIn: '7d',
       });
         // для второго варианта
-        // res.cookie('jwt', token, {
-        //   maxAge: 360000,
-        //   httpOnly: true,
-        //   sameSite: true,
-        // });
+      // res.cookie('jwt', token, {
+      //   maxAge: 360000,
+      //   httpOnly: true,
+      //   sameSite: true,
+      // });
       return res.status(200).send({ jwt: token });
     })
     .catch(next);

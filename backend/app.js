@@ -3,9 +3,9 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+// const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 // для второго варианта
-// const cookieParser = require('cookie-parser');
 const routes = require('./routes/index');
 const setError = require('./middlewares/setError');
 const NotFoundError = require('./errors/not-found-err');
@@ -26,7 +26,11 @@ mongoose
   });
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  credentials: true,
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+  origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000'],
+}));
 app.use(express.json());
 // для второго варианта
 // app.use(cookieParser);

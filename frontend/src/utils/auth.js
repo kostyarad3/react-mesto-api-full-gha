@@ -37,11 +37,12 @@ export const login = (email, password) => {
 
 export function getContent(jwt) {
   return fetch(`${BASE_URL}/users/me`, {
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       'Authorization': `Bearer ${jwt}`
     },
   })
-    .then((res) => getResponseData(res))
+    .then((res) =>  getResponseData(res))
     .then((data) => data);
 }
