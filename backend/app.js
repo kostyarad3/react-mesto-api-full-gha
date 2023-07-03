@@ -29,7 +29,7 @@ const app = express();
 app.use(cors({
   credentials: true,
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
-  origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000'],
+  origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000', 'http://localhost:3001'],
 }));
 app.use(express.json());
 // для второго варианта

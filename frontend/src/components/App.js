@@ -49,9 +49,10 @@ function App() {
       api
         .getInitialData()
         .then((data) => {
+          console.log(data)
           const [userData, initialCardsData] = data;
           setCurrentUser(userData);
-          setCards(initialCardsData);
+          setCards(initialCardsData.data);
         })
         .catch((err) => console.log(err));
     }
@@ -192,6 +193,7 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
+        console.log(res);
         if (res) {
           setLoggedIn(true);
           setUserEmail(email);
@@ -211,7 +213,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setUserEmail(res.data.email);
+            setUserEmail(res.user.email);
             navigate("/", { replace: true });
           }
         })

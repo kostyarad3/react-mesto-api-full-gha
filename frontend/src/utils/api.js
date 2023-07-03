@@ -5,6 +5,7 @@ class Api {
   }
 
   _getResponseData(response) {
+    console.log(response)
     if (response.ok) {
       return response.json();
     }
@@ -86,6 +87,7 @@ class Api {
     return isLiked ? this.removeLike(cardId) : this.giveLike(cardId);
   }
 }
+
 
 const api = new Api({
   baseUrl: "https://api.mesto.kostyarad.nomoreparties.sbs",

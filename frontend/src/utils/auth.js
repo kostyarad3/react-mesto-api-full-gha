@@ -28,9 +28,9 @@ export const login = (email, password) => {
   })
     .then((res) => getResponseData(res))
     .then((data) => {
-      if (data.token) {
-        localStorage.setItem("jwt", data.token);
-        return data;
+      if (data.jwt) {
+        localStorage.setItem("jwt", data.jwt);
+        return data.jwt;
       }
     });
 };
