@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.61.104
+IP-адрес <158.160.61.104>
 
 Frontend https://mesto.kostyarad.nomoreparties.sbs/
 
