@@ -201,10 +201,14 @@ function App() {
         if (res) {
           setLoggedIn(true);
           setUserEmail(email);
+          setInfoTooltipText("Вы успешно вошли!");
+          setiIfoTooltipImage(InfoTooltipSuccess);
           navigate("/", { replace: true });
         }
       })
       .catch((err) => {
+        setInfoTooltipText("Что-то не так!");
+        setiIfoTooltipImage(InfoTooltipFailure);
         console.log(err);
       });
   }

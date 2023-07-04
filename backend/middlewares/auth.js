@@ -5,7 +5,6 @@ const UnauthorizedError = require('../errors/unauthorized-err');
 
 module.exports.auth = (req, res, next) => {
   const { authorization } = req.headers;
-
   if (!authorization || !authorization.startsWith('Bearer ')) {
     next(new UnauthorizedError('Необходима авторизация'));
     return;
@@ -20,7 +19,6 @@ module.exports.auth = (req, res, next) => {
     next(new UnauthorizedError('Необходима авторизация'));
     return;
   }
-
   req.user = payload;
 
   next();
