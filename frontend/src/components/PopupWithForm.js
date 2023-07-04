@@ -18,9 +18,8 @@ function PopupWithForm({ name, title, buttonTitle, ...props }) {
           {props.children}
           <button
             type="submit"
-            className={`form__submit button ${!props.isValid && 'form__submit_type_inactive'}`}
+            className={`form__submit button`}
             aria-label={buttonTitle}
-            disabled={!props.isValid}
           >
             {buttonTitle}
           </button>

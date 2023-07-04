@@ -49,9 +49,8 @@ function App() {
       api
         .getInitialData()
         .then((data) => {
-          console.log(data)
           const [userData, initialCardsData] = data;
-          setCurrentUser(userData);
+          setCurrentUser(userData.user);
           setCards(initialCardsData.data);
         })
         .catch((err) => console.log(err));
@@ -67,6 +66,7 @@ function App() {
       isEditAvatarPopupOpen ||
       isEditProfilePopupOpen ||
       isAddPlacePopupOpen ||
+      isConfirmationPopupOpen ||
       selectedCard ||
       isInfoTooltipPopupOpen
     ) {
@@ -95,6 +95,7 @@ function App() {
     isAddPlacePopupOpen,
     selectedCard,
     isInfoTooltipPopupOpen,
+    isConfirmationPopupOpen,
   ]);
   // FUNCTIONS
   function handleEditAvatarClick() {
@@ -115,18 +116,19 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsInfoTooltipPopupOpen(false);
+    setIsConfirmayionPopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
   function handleCardClick(selectedCard) {
     setSelectedCard(selectedCard);
   }
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.data : c))
         );
       })
       .catch((err) => console.log(err));
@@ -143,10 +145,12 @@ function App() {
       .catch((err) => console.log(err));
   }
   function handleUpdateUser(userInfo) {
+    console.log(userInfo);
     api
       .editUserInfo(userInfo.name, userInfo.about)
       .then((updatedUserInfo) => {
-        setCurrentUser(updatedUserInfo);
+        console.log(updatedUserInfo);
+        setCurrentUser(updatedUserInfo.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
@@ -155,17 +159,18 @@ function App() {
     api
       .editUserAvatar(avatar.avatar)
       .then((updatedUserInfo) => {
-        setCurrentUser(updatedUserInfo);
+        setCurrentUser(updatedUserInfo.user);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
 
   function handleAddPlaceSubmit(newCard) {
+    console.log(newCard);
     api
       .addNewCard(newCard.name, newCard.link)
       .then((updatedCard) => {
-        setCards([updatedCard, ...cards]);
+        setCards([updatedCard.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
@@ -193,7 +198,6 @@ function App() {
     auth
       .login(email, password)
       .then((res) => {
-        console.log(res);
         if (res) {
           setLoggedIn(true);
           setUserEmail(email);
@@ -302,6 +306,7 @@ function App() {
           isConfirmationPopupOpen={isConfirmationPopupOpen}
           handleCardDelete={handleCardDelete}
           card={deletedCard}
+          onClose={closeAllPopups}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip
@@ -317,6 +322,3 @@ function App() {
 }
 
 export default App;
-
-// TODO
-// разобраться, почему при обновлении страницы все слетает на деплое

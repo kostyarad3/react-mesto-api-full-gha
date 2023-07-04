@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
-const cors = require('cors');
+// const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('./middlewares/cors');
+require('dotenv').config();
+
+console.log(process.env);
+// для второго варианта с куками вместо localStorage
 // const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// для второго варианта
 const routes = require('./routes/index');
 const setError = require('./middlewares/setError');
 const NotFoundError = require('./errors/not-found-err');
@@ -26,13 +30,17 @@ mongoose
   });
 
 const app = express();
-app.use(cors({
-  credentials: true,
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
-  origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000', 'http://localhost:3001'],
-}));
+
+// ЕСЛИ НЕ РАБОТАЕТ МИДЛВАРА CORS
+// const corsOptions = {
+//   credentials: true,
+//   methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+//   origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000', 'http://localhost:3001'],
+// };
+
+// app.use(cors(corsOptions));
 app.use(express.json());
-// для второго варианта
+// для второго варианта с куками вместо localStorage
 // app.use(cookieParser);
 
 app.get('/crash-test', () => {
@@ -42,6 +50,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(requestLogger);
+app.use(cors);
 
 app.use(routes);
 app.use(auth);

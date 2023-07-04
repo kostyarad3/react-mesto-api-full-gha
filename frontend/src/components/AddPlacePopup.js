@@ -1,23 +1,21 @@
 import PopupWithForm from "./PopupWithForm";
-import React, { useEffect } from "react";
-import useFormWithValidation from "../hooks/useFormWithValidation";
+import React from "react";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const { values, errors, isValid, handleChange, resetForm } =
-    useFormWithValidation();
+  const [values, setValues] = React.useState({});
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setValues({ ...values, [name]: value });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-
     onAddPlace({
       name: values.cardName,
       link: values.cardLink,
     });
   }
-
-  useEffect(() => {
-    if (isOpen) resetForm();
-  }, [isOpen, resetForm]);
 
   return (
     <PopupWithForm
@@ -27,7 +25,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      isValid={isValid}
     >
       <input
         type="text"
@@ -41,11 +38,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         minLength="2"
         maxLength="30"
       />
-      <span
-        className="form__input-error form__input-error_active"
-      >
-        {errors?.cardName && "Текст не должен быть короче 2 и длиннее 30 симв."}
-      </span>
+      <span className="form__input-error form__input-error_active"></span>
       <input
         type="url"
         className="form__input"
@@ -56,11 +49,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         placeholder="Ссылка на картинку"
         required
       />
-      <span
-        className="form__input-error form__input-error_active"
-      >
-        {errors?.cardLink && "Введите адрес сайта"}
-      </span>
+      <span className="form__input-error form__input-error_active"></span>
     </PopupWithForm>
   );
 }

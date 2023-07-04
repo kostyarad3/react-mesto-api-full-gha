@@ -1,14 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
-import useFormWithValidation from "../hooks/useFormWithValidation";
 import React from "react";
 
-function ConfirmaionPopup({ isConfirmationPopupOpen, handleCardDelete, card }) {
-  const { isValid, setIsValid } = useFormWithValidation();
-
-  React.useEffect(() => {
-    if (isConfirmationPopupOpen) setIsValid(true);
-  }, [isConfirmationPopupOpen]);
-
+function ConfirmaionPopup({ isConfirmationPopupOpen, handleCardDelete, card, onClose }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     handleCardDelete(card);
@@ -21,7 +14,7 @@ function ConfirmaionPopup({ isConfirmationPopupOpen, handleCardDelete, card }) {
       buttonTitle="Да"
       isOpen={isConfirmationPopupOpen}
       onSubmit={handleSubmit}
-      isValid={isValid}
+      onClose={onClose}
     ></PopupWithForm>
   );
 }
