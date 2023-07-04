@@ -37,6 +37,7 @@ const app = express();
 // };
 
 // app.use(cors(corsOptions));
+
 app.use(express.json());
 // для второго варианта с куками вместо localStorage
 // app.use(cookieParser);

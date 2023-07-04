@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
   getCards, createCard, deleteCard, setLike, removeLike,
 } = require('../controllers/cards');
-const LINK_REGEX = require('../utils/constants');
+const { LINK_REGEX } = require('../utils/constants');
 
 router.get('/', getCards);
 

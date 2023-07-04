@@ -10,6 +10,7 @@ function getResponseData(res) {
 
 export function register(email, password) {
   return fetch(`${BASE_URL}/signup`, {
+    credentials: "include",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,6 +21,7 @@ export function register(email, password) {
 
 export const login = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
+    credentials: "include",
     method: "POST",
     headers: {
       "Content-Type": "application/json",

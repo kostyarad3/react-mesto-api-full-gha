@@ -4,7 +4,7 @@ const router = require('express').Router();
 const {
   getUsers, getUserById, updateUserInfo, updateUserAvatar, getCurrentUser,
 } = require('../controllers/users');
-const LINK_REGEX = require('../utils/constants');
+const { LINK_REGEX } = require('../utils/constants');
 
 router.get('/', getUsers);
 router.get('/me', getCurrentUser);

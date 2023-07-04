@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const LINK_REGEX = require('../utils/constants');
+const { LINK_REGEX } = require('../utils/constants');
 const { login, createUser } = require('../controllers/users');
 
 router.post('/signin', celebrate({
