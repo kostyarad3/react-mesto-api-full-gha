@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('./middlewares/cors');
 require('dotenv').config();
-
-console.log(process.env);
 // для второго варианта с куками вместо localStorage
 // const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
