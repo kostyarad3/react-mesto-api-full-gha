@@ -1,5 +1,5 @@
-export const BASE_URL = "https://api.mesto.kostyarad.nomoreparties.sbs";
-//export const BASE_URL = "http://localhost:3000";
+//export const BASE_URL = "https://api.mesto.kostyarad.nomoreparties.sbs";
+export const BASE_URL = "http://localhost:3000";
 
 function getResponseData(res) {
   if (res.ok) {
@@ -34,6 +34,9 @@ export const login = (email, password) => {
         localStorage.setItem("jwt", data.jwt);
         return data.jwt;
       }
+    })
+    .catch((err) => {
+      console.log(err)
     });
 };
 

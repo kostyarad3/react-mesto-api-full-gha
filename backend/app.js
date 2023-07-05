@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 // const cors = require('cors');
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('./middlewares/cors');
-require('dotenv').config();
 // для второго варианта с куками вместо localStorage
 // const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -42,11 +42,11 @@ app.use(express.json());
 // для второго варианта с куками вместо localStorage
 // app.use(cookieParser);
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
+// app.get('/crash-test', () => {
+//   setTimeout(() => {
+//     throw new Error('Сервер сейчас упадёт');
+//   }, 0);
+// });
 
 app.use(requestLogger);
 app.use(cors);
