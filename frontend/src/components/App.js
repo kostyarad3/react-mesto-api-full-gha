@@ -145,11 +145,9 @@ function App() {
       .catch((err) => console.log(err));
   }
   function handleUpdateUser(userInfo) {
-    console.log(userInfo);
     api
       .editUserInfo(userInfo.name, userInfo.about)
       .then((updatedUserInfo) => {
-        console.log(updatedUserInfo);
         setCurrentUser(updatedUserInfo.user);
         closeAllPopups();
       })
@@ -166,7 +164,6 @@ function App() {
   }
 
   function handleAddPlaceSubmit(newCard) {
-    console.log(newCard);
     api
       .addNewCard(newCard.name, newCard.link)
       .then((updatedCard) => {

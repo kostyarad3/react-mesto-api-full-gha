@@ -2,6 +2,7 @@ class Api {
   constructor(config) {
     this._url = config.baseUrl;
     this._headers = config.headers;
+    this._credentials = config.credentials;
   }
 
   _getResponseData(response) {
@@ -19,6 +20,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
+      credentials: this._credentials,
     }).then((response) => this._getResponseData(response));
   }
 
@@ -26,6 +28,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers,
+      credentials: this._credentials,
     }).then((response) => this._getResponseData(response));
   }
 
@@ -33,6 +36,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({
         name: name,
         about: about,
@@ -44,6 +48,7 @@ class Api {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({
         name: cardName,
         link: cardLink,
@@ -55,6 +60,7 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: this._credentials,
     }).then((response) => this._getResponseData(response));
   }
 
@@ -62,6 +68,7 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
+      credentials: this._credentials,
     }).then((response) => this._getResponseData(response));
   }
 
@@ -69,12 +76,14 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: this._credentials,
     }).then((response) => this._getResponseData(response));
   }
 
   editUserAvatar(value) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
+      credentials: this._credentials,
       headers: this._headers,
       body: JSON.stringify({
         avatar: value,
