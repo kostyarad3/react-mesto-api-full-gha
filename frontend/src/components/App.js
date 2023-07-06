@@ -45,6 +45,10 @@ function App() {
   });
   // EFFECTS
   React.useEffect(() => {
+    checkToken();
+  }, []);
+
+  React.useEffect(() => {
     if (loggedIn) {
       api
         .getInitialData()
@@ -55,11 +59,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn]);
-
-  React.useEffect(() => {
-    checkToken();
-  }, []);
+  }, [loggedIn, currentUser]);
   // close popup by ESC press and overlay click
   React.useEffect(() => {
     if (
