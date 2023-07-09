@@ -47,7 +47,6 @@ function App() {
   React.useEffect(() => {
     checkToken();
   }, []);
-
   React.useEffect(() => {
     if (loggedIn) {
       api
@@ -59,7 +58,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn, currentUser]);
+  }, [loggedIn]);
   // close popup by ESC press and overlay click
   React.useEffect(() => {
     if (
@@ -204,9 +203,13 @@ function App() {
         }
       })
       .catch((err) => {
-        setInfoTooltipText("Что-то не так!");
+        setLoggedIn(false);
+        setInfoTooltipText("Что-то пошло не так! Попробуйте ещё раз.");
         setiIfoTooltipImage(InfoTooltipFailure);
         console.log(err);
+      })
+      .finally(() => {
+        setIsInfoTooltipPopupOpen(true);
       });
   }
 

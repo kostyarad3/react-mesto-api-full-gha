@@ -42,11 +42,11 @@ app.use(express.json());
 // для второго варианта с куками вместо localStorage
 // app.use(cookieParser);
 
-// app.get('/crash-test', () => {
-//   setTimeout(() => {
-//     throw new Error('Сервер сейчас упадёт');
-//   }, 0);
-// });
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(requestLogger);
 app.use(cors);
