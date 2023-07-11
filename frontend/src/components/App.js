@@ -54,7 +54,7 @@ function App() {
         .then((data) => {
           const [userData, initialCardsData] = data;
           setCurrentUser(userData.user);
-          setCards(initialCardsData.data);
+          setCards(initialCardsData.data.reverse());
         })
         .catch((err) => console.log(err));
     }

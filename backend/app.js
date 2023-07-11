@@ -1,22 +1,20 @@
 /* eslint-disable no-console */
-// const cors = require('cors');
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 const cors = require('./middlewares/cors');
-// для второго варианта с куками вместо localStorage
-// const cookieParser = require('cookie-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 const setError = require('./middlewares/setError');
 const NotFoundError = require('./errors/not-found-err');
 const { auth } = require('./middlewares/auth');
+const limiter = require('./middlewares/limiter');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 
-const { PORT = 3000 } = process.env;
-const BASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
+const { PORT = 3000, BASE_URL } = process.env;
 
 mongoose
   .connect(BASE_URL)
@@ -29,18 +27,7 @@ mongoose
 
 const app = express();
 
-// ЕСЛИ НЕ РАБОТАЕТ МИДЛВАРА CORS
-// const corsOptions = {
-//   credentials: true,
-//   methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
-//   origin: ['https://api.mesto.kostyarad.nomoreparties.sbs', 'https://mesto.kostyarad.nomoreparties.sbs', 'http://localhost:3000', 'http://localhost:3001'],
-// };
-
-// app.use(cors(corsOptions));
-
 app.use(express.json());
-// для второго варианта с куками вместо localStorage
-// app.use(cookieParser);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -50,6 +37,8 @@ app.get('/crash-test', () => {
 
 app.use(requestLogger);
 app.use(cors);
+app.use(helmet());
+app.use(limiter);
 
 app.use(routes);
 app.use(auth);

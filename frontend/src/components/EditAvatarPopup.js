@@ -1,21 +1,14 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormWithValidation();
+
   React.useEffect(() => {
-    if (isOpen) {
-      setValues({ avatarLink: currentUser.avatar });
-    }
-  }, [currentUser, isOpen]);
-
-  const [values, setValues] = React.useState({});
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
-  }
+    if (isOpen) resetForm();
+  }, [isOpen, resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,6 +25,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <input
         type="url"
@@ -41,9 +35,10 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         onChange={handleChange}
         placeholder="Ссылка на картинку"
         required
-        value={values.avatarLink || ""}
       />
-      <span className="form__input-error form__input-error_active"></span>
+      <span className="form__input-error form__input-error_active">
+        {errors?.avatarLink && "Введите адрес сайта."}
+      </span>
     </PopupWithForm>
   );
 }

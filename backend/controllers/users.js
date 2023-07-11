@@ -17,12 +17,7 @@ function login(req, res, next) {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-        // для второго варианта
-      // res.cookie('jwt', token, {
-      //   maxAge: 360000,
-      //   httpOnly: true,
-      //   sameSite: true,
-      // });
+
       return res.status(200).send({ jwt: token });
     })
     .catch(next);
