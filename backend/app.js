@@ -15,6 +15,8 @@ const cardRoutes = require('./routes/cards');
 
 const { PORT = 3000, BASE_URL } = process.env;
 
+console.log(BASE_URL);
+
 mongoose
   .connect(BASE_URL)
   .then(() => {
