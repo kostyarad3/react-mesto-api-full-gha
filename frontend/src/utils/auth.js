@@ -42,10 +42,10 @@ export function getContent(jwt) {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${jwt}`,
+      Authorization: `Bearer ${jwt}`,
       //"Authorization": `Bearer ${localStorage.getItem('jwt')}`,
     },
   })
-    .then((res) =>  getResponseData(res))
+    .then((res) => getResponseData(res))
     .then((data) => data);
 }
