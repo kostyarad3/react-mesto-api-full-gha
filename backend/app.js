@@ -13,9 +13,9 @@ const { auth } = require('./middlewares/auth');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 
-const { PORT = 3000, BASE_URL } = process.env;
+const { PORT = 3000 } = process.env;
+const BASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
 
-console.log(BASE_URL);
 
 mongoose
   .connect(BASE_URL)
